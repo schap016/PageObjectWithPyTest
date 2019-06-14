@@ -10,9 +10,9 @@ import pytest
 
 @pytest.fixture()
 def driver():
-    driver = webdriver.Chrome("C:/Users/saman/Downloads/dealerextranet/src/test/resources/browserDrivers/chromedriver")
-    driver.maximize_window()
-    driver.implicitly_wait(3)
+	driver_path = os.path.join(myPath, "../TestResources/drivers/chromedriver")
+    driver = webdriver.Chrome(driver_path)
+    driver.implicitly_wait(5)
     driver.set_window_size(1260, 1080)
     return driver
 
