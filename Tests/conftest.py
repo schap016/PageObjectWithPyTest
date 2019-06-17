@@ -2,7 +2,7 @@ import os
 import sys
 
 myPath = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, myPath + '/../')
+sys.path.insert(0, myPath)
 from selenium import webdriver
 from PageObjects.homePage import HomePage
 import pytest
