@@ -15,7 +15,7 @@ def driver():
     #driver_path = driver_path.replace("/Tests/TestResources/drivers/chromedriver","/TestResources/drivers/chromedriver.exe")
     options = Options()
     options.headless = True
-    driver = webdriver.Chrome(option =options)
+    driver = webdriver.Chrome(options=options)
     driver.implicitly_wait(5)
     driver.set_window_size(1260, 1080)
     return driver
