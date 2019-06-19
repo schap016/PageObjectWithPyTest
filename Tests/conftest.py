@@ -6,17 +6,18 @@ sys.path.insert(0, myPath + '/../')
 from selenium import webdriver
 from PageObjects.homePage import HomePage
 import pytest
-from selenium.webdriver.chrome.options import Options
+import platform
+platform = platform.system()
 
 
 @pytest.fixture()
 def driver():
-    #driver_path = os.path.join(myPath, "TestResources/drivers/chromedriver")
-    #driver_path = driver_path.replace("/Tests/TestResources/drivers/chromedriver","/TestResources/drivers/chromedriver.exe")
-    options = Options()
-    options.headless = True
-    driver = webdriver.Chrome(options=options)
-    driver.implicitly_wait(5)
+    driver_path = os.path.join(myPath, "../TestResources/drivers/chromedriver")
+    if(platform!='Windows'):
+        driver_path = driver_path.replace("/Tests/TestResources/drivers/chromedriver","/TestResources/drivers/chromedriver")
+    driver = webdriver.Chrome(driver_path)
+    driver.maximize_window()
+    driver.implicitly_wait(3)
     driver.set_window_size(1260, 1080)
     return driver
 
