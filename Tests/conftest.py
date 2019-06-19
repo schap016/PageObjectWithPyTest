@@ -12,14 +12,10 @@ platform = platform.system()
 
 @pytest.fixture()
 def driver():
-<<<<<<< HEAD
-
-	driver_path = os.path.join(myPath, "../TestResources/drivers/chromedriver")
-=======
     driver_path = os.path.join(myPath, "../TestResources/drivers/chromedriver")
+    #driver_path = os.path.join(myPath, "../TestResources/drivers/chromedriver")
     if(platform!='Windows'):
         driver_path = driver_path.replace("/Tests/TestResources/drivers/chromedriver","/TestResources/drivers/chromedriver")
->>>>>>> 41fa014271ffd882b2d7cb0fbd42a3d4f28f6285
     driver = webdriver.Chrome(driver_path)
     driver.maximize_window()
     driver.implicitly_wait(3)
