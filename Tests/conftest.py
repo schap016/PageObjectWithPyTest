@@ -17,18 +17,18 @@ def driver():
     if platform == 'Windows':
         driver_path = os.path.join(myPath, "../TestResources/drivers/chromedriver")
         driver = webdriver.Chrome(driver_path)
-        driver.implicitly_wait(5)
-        driver.set_window_size(1260, 1080)
-       
-    elif platform == 'Linux':         
-        driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver/chromedriver")    
-        driver.implicitly_wait(5)
-        driver.set_window_size(1260, 1080)
+    
+    elif platform == 'Linux':
+     
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+        driver = webdriver.Chrome('/usr/bin/chromedriver/chromedriver',chrome_options=chrome_options)
+        
     return driver
 
 @pytest.fixture()
 def home_page(driver):
     home_page = HomePage(driver)
     return home_page
-
-
