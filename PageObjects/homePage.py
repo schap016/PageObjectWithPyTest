@@ -13,7 +13,7 @@ class HomePage():
 
     #"""Verifies page title of home page for PHP Travels"""
     def is_title_matches(self):
-        if self.driver.title == "PHPTRAVELS | Travel Technology Partner":
+        if self.driver.title == "PHPTRAVELS Travel Technology Partner":
             return True
         return False
 

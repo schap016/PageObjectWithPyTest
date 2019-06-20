@@ -2,28 +2,28 @@ import os
 import sys
 
 myPath = os.path.dirname(os.path.abspath(__file__))
+print(myPath)
 sys.path.insert(0, myPath + '/../')
 from selenium import webdriver
 from PageObjects.homePage import HomePage
 import pytest
-import platform
+from selenium.webdriver.chrome.options import Options
+import platform 
 platform = platform.system()
 
 
 @pytest.fixture()
 def driver():
-<<<<<<< HEAD
-
-	driver_path = os.path.join(myPath, "../TestResources/drivers/chromedriver")
-=======
-    driver_path = os.path.join(myPath, "../TestResources/drivers/chromedriver")
-    if(platform!='Windows'):
-        driver_path = driver_path.replace("/Tests/TestResources/drivers/chromedriver","/TestResources/drivers/chromedriver")
->>>>>>> 41fa014271ffd882b2d7cb0fbd42a3d4f28f6285
-    driver = webdriver.Chrome(driver_path)
-    driver.maximize_window()
-    driver.implicitly_wait(3)
-    driver.set_window_size(1260, 1080)
+    if platform == 'Windows':
+        driver_path = os.path.join(myPath, "../TestResources/drivers/chromedriver")
+        driver = webdriver.Chrome(driver_path)    
+    elif platform == 'Linux':     
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+        driver_path = myPath.replace("/Tests","/TestResources/drivers_linux/chromedriver")
+        driver = webdriver.Chrome(driver_path,chrome_options=chrome_options)        
     return driver
 
 @pytest.fixture()
