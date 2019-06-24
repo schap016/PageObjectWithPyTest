@@ -31,5 +31,13 @@ def home_page(driver):
     home_page = HomePage(driver)
     return home_page
 
+@pytest.fixture()
+def screenshot_path():
+    if platform =="Windows":
+        screeenshot_folder_path = os.path.join(myPath, "../TestResources/failed_tests_screens/")
+    if platform =="Linux":
+        screeenshot_folder_path =myPath.replace("/Tests", "/TestResources/failed_tests_screens/")
+    return screeenshot_folder_path
+
 
 
